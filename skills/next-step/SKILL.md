@@ -1,6 +1,6 @@
 ---
 name: next-step
-description: Senior-developer coaching briefing on a task from docs/DEVELOPMENT_PLAN.md — the next Todo task if no argument is given, or a specific step/iteration/topic if one is. Pulls in the relevant SPECIFICATION.md, ARCHITECTURE.md, TECHNICAL_DESIGN.md and CODING_CONVENTIONS.md sections and explains the idiomatic approach for the project's own stack. Companion to plan-project, which writes the documents, and review-step, which reviews the result.
+description: Brief the next Todo task from docs/DEVELOPMENT_PLAN.md (or a named step, iteration or topic) against the project's spec, architecture, technical design and conventions, before you build it.
 disable-model-invocation: true
 argument-hint: "[step-id | iteration-number | topic]"
 effort: high

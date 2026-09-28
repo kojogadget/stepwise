@@ -1,6 +1,6 @@
 ---
 name: review-step
-description: Senior-developer review of an implemented task from docs/DEVELOPMENT_PLAN.md — checks the current diff against the task's Goal/Test/Requirements lines, the ARCHITECTURE.md dependency rules and critical invariants, CODING_CONVENTIONS.md, and the idioms of the project's own stack. Companion to next-step: next-step briefs before you build, review-step reviews after you've built. Proposes but never applies a Status update.
+description: Review the current diff against a task's Goal and Test lines in docs/DEVELOPMENT_PLAN.md, the architecture's dependency rules and invariants, and the coding conventions. Proposes, never applies, a Status update.
 disable-model-invocation: true
 argument-hint: "[step-id | iteration-number | topic]"
 effort: high

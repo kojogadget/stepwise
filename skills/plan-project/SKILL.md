@@ -1,6 +1,6 @@
 ---
 name: plan-project
-description: Plan a new project by interviewing the developer and writing the five governing documents into docs/ — SPECIFICATION.md, ARCHITECTURE.md, TECHNICAL_DESIGN.md, CODING_CONVENTIONS.md and DEVELOPMENT_PLAN.md — plus an additive CLAUDE.md. Use this when starting a new codebase, when someone wants a spec/architecture/iteration plan written up front, or when an existing project needs these governing docs so the next-step and review-step workflow has something to read. Stack-agnostic; produces a DEVELOPMENT_PLAN.md in the exact format next-step and review-step parse.
+description: Plan a whole project by interviewing the developer and writing five governing documents into docs/ — SPECIFICATION.md, ARCHITECTURE.md, TECHNICAL_DESIGN.md, CODING_CONVENTIONS.md and DEVELOPMENT_PLAN.md — plus an additive CLAUDE.md. Use when starting a new codebase, or when an existing project should adopt the stepwise next-step/review-step workflow. Not for a single feature spec, a standalone architecture write-up, or editing one existing document.
 argument-hint: "[project name | path to a brief]"
 effort: high
 ---
