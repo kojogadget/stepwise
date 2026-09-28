@@ -10,7 +10,13 @@
     {
       "name": "stepwise",
       "source": "./",
-      "description": "Plan a project into five governing documents, then brief and review each task against them."
+      "description": "Plan a project into five governing documents, then brief and review each task against them.",
+      "version": "0.1.0",
+      "category": "development",
+      "author": {
+        "name": "Kjartan Gundersen",
+        "email": "kjartan.gundersen@knowit.no"
+      }
     }
   ]
 }
