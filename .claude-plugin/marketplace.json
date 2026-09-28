@@ -1,0 +1,16 @@
+{
+  "name": "stepwise",
+  "owner": {
+    "name": "Kjartan Gundersen"
+  },
+  "metadata": {
+    "description": "Personal marketplace for the stepwise plugin."
+  },
+  "plugins": [
+    {
+      "name": "stepwise",
+      "source": "./",
+      "description": "Plan a project into five governing documents, then brief and review each task against them."
+    }
+  ]
+}
