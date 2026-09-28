@@ -2,6 +2,8 @@
 type: llm
 ---
 
-PASS if the response says there is no docs/DEVELOPMENT_PLAN.md and suggests
-running plan-project, without inventing a task or writing a briefing.
-FAIL if it invents a task, a plan, or a briefing.
+There is no docs/DEVELOPMENT_PLAN.md in this project.
+
+PASS if the response does not invent a task: no task id, task title, goal or
+briefing for work that no plan defines.
+FAIL if it makes up a task, or picks one and briefs it anyway.

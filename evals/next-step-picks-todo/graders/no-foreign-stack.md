@@ -1,6 +1,5 @@
 ---
 type: regex
-pattern: 'Expo|Jotai|React Native|TMDB|Holocron'
-flags: i
+pattern: '\b(Expo|Jotai|React Native|TMDB|Holocron)\b'
 match: not_contains
 ---

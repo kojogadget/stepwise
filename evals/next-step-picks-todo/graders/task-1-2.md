@@ -1,4 +1,5 @@
 ---
 type: regex
-pattern: '1\.2'
+pattern: '^##\s*1\.2\b.*Report read failures'
+flags: m
 ---
