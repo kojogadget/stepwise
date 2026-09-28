@@ -67,6 +67,11 @@ normally "what I just built for this task." Find the default branch with
 then `master`. If the user names a different range (a commit, a branch, "just
 what's staged"), use that instead.
 
+`git diff` does not show untracked files, and a task's new modules and tests are
+usually exactly that. List them with `git ls-files --others --exclude-standard`
+and read each one in full as part of the diff — otherwise a new test reads as
+missing evidence.
+
 On the default branch itself with a clean tree, the merge base is `HEAD` and the
 diff is empty — ask which commits belong to the task rather than reviewing
 nothing.
