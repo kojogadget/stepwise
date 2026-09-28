@@ -195,10 +195,10 @@ architecture rule or invariant on its own terms.
 *Iteration <n> · Status: <status>*
 
 ### Completion check
-- [ ] One checkbox per condition parsed from the Test line — mark it met,
-      partially met, or unmet, with the concrete evidence (test name, run
-      output, or "unaddressed") on the same line.
-- [ ] Goal, checked separately from the literal Test conditions.
+- [x] / [~] / [ ] One line per condition parsed from the Test line — `[x]` met,
+      `[~]` partially met, `[ ]` unmet — with the concrete evidence (test
+      name, run output, or "unaddressed") on the same line.
+- [x] / [~] / [ ] Goal, checked separately from the literal Test conditions.
 
 ### Code quality
 **Blocking**
