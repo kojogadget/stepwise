@@ -99,7 +99,7 @@ directional rules, because that is what `review-step` measures against.
 
 Carry the dependency rules as a table plus a Mermaid graph, not as sentences:
 
-```markdown
+~~~markdown
 ```mermaid
 flowchart TD
     delivery --> application --> domain
@@ -110,7 +110,7 @@ flowchart TD
 | --- | --- | --- |
 | domain | Values, identity, failure vocabulary | Nothing |
 | application | Use cases, ports | domain |
-```
+~~~
 
 Then a short bullet list of the **forbidden** imports, since permissions alone
 leave every other combination ambiguous. One line each, no justification:
