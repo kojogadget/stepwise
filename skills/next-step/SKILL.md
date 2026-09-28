@@ -21,11 +21,17 @@ it. Any user or project instructions about explaining changes before making
 them and waiting for a go-ahead still apply — this skill decides _what to say_, not
 whether to ask before editing files.
 
+Answer in the language of the conversation. Keep the section headings below,
+task ids, requirement IDs and code identifiers exactly as written.
+
 ## 0. Check the foundation
 
 The briefing depends on the five governing documents in `docs/`:
 `SPECIFICATION.md`, `ARCHITECTURE.md`, `TECHNICAL_DESIGN.md`,
-`CODING_CONVENTIONS.md` and `DEVELOPMENT_PLAN.md`.
+`CODING_CONVENTIONS.md` and `DEVELOPMENT_PLAN.md`. Look for `docs/` in the
+current directory, then in the repository root (`git rev-parse
+--show-toplevel`). If you find more than one `DEVELOPMENT_PLAN.md` — a monorepo
+with a plan per package — list them and ask which one applies.
 
 - No `docs/DEVELOPMENT_PLAN.md` → say so and suggest `/stepwise:plan-project`.
   Don't improvise a plan or a task.
@@ -40,6 +46,10 @@ status. Its structure is a fixed contract, described in
 is a `### <n>.<m> <title>` heading under a `## Iteration <n> — <title>` heading,
 with `**Status:**`, `**Goal:**`, `**Test:**` and optionally `**Tip:**` lines,
 and a `**Requirements:**` line on the iteration.
+
+If no `### <n>.<m>` task headings parse, or a task has a status other than
+`Todo` or `Done`, the plan doesn't follow the format. Say which heading or line
+is off and stop — don't guess at a structure the plan doesn't have.
 
 Resolve the argument, if one was given:
 

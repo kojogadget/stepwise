@@ -28,16 +28,35 @@ This is a coaching layer on top of your normal behavior, not a replacement
 for it. Any user or project instructions about explaining changes before
 making them and waiting for a go-ahead still apply.
 
+Answer in the language of the conversation. Keep the section headings below,
+task ids, requirement IDs and code identifiers exactly as written.
+
+## 0. Check the foundation
+
+The review is checked against the five governing documents in `docs/`:
+`SPECIFICATION.md`, `ARCHITECTURE.md`, `TECHNICAL_DESIGN.md`,
+`CODING_CONVENTIONS.md` and `DEVELOPMENT_PLAN.md`. Look for `docs/` in the
+current directory, then in the repository root (`git rev-parse
+--show-toplevel`). If you find more than one `DEVELOPMENT_PLAN.md` — a monorepo
+with a plan per package — list them and ask which one applies.
+
+- No `docs/DEVELOPMENT_PLAN.md` → say so and suggest `/stepwise:plan-project`;
+  there is nothing to review against.
+- Any of the other four missing → continue, but name which ones are missing and
+  say which checks you couldn't make, rather than reviewing against rules you
+  guessed.
+
 ## 1. Find the task
 
-No `docs/DEVELOPMENT_PLAN.md` → say so and suggest `/stepwise:plan-project`;
-there is nothing to review against.
-
-Otherwise read it in full for the ordered task list. Its structure is a fixed
+Read the plan in full for the ordered task list. Its structure is a fixed
 contract, described in
 `${CLAUDE_PLUGIN_ROOT}/skills/plan-project/references/plan-format.md`: each task
 is a `### <n>.<m> <title>` heading under a `## Iteration <n> — <title>` heading,
 with a `**Status:**` line, and a `**Requirements:**` line on the iteration.
+
+If no `### <n>.<m>` task headings parse, or a task has a status other than
+`Todo` or `Done`, the plan doesn't follow the format. Say which heading or line
+is off and stop — don't guess at a structure the plan doesn't have.
 
 Resolve the argument:
 

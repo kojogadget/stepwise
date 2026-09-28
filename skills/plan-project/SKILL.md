@@ -49,7 +49,12 @@ Before asking anything, look at what exists.
 - Is there a `docs/` directory with any of the five files already? If so, this
   is a partial run, not a fresh one. Read what is there, tell the user which
   documents exist, and offer to continue from the first missing one rather than
-  regenerating work they already approved.
+  regenerating work they already approved. If a `DEVELOPMENT_PLAN.md` exists,
+  check it against `references/plan-format.md` and name any heading, status or
+  field that drifted, since the companion skills stop on a malformed plan.
+- Resolve `docs/` from the current directory, or the repository root if the
+  current directory has none. In a monorepo, ask which package the documents
+  are for before writing anything.
 - Is there code? A `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`,
   source directories? Read enough to know the stack and rough shape. Retrofitting
   documents onto an existing codebase is a legitimate use of this skill — it just
