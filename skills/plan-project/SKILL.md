@@ -69,9 +69,8 @@ That is the moment for the user to correct a wrong premise cheaply.
 
 ## Phase 1 — Product and scope → `docs/SPECIFICATION.md`
 
-This document owns **what the product does and why**, in the user's language.
-No technology appears here — not a framework name, not a database. If the spec
-mentions a library, the boundary has already leaked.
+What the product does and why, in the user's language — no technology. Shape
+and boundaries: `references/document-contracts.md`.
 
 Interview for:
 
@@ -87,36 +86,23 @@ Interview for:
 - Anything non-negotiable: accessibility, languages, offline, privacy,
   third-party attribution, regulatory constraints.
 
-Then assign **requirement IDs** — short prefixed identifiers grouped by area
-(`ACCT-01`, `BILL-03`, `NOTIF-02`). These are the join key of the whole system:
-the plan references them per iteration, and `next-step` greps the spec for them
-to find the rules behind a task. Without them, every task briefing has to guess.
-
-Close the document with a "Later goals" section holding everything ruled out,
-and a definition of when the first release is complete.
+Then assign **requirement IDs** (`ACCT-01`, `BILL-03`). They are the join key
+of the whole system: the plan references them per iteration, and the companion
+skills grep the spec for them. Without them, every task briefing has to guess.
 
 ## Phase 2 — Structure and guarantees → `docs/ARCHITECTURE.md`
 
-This document owns **layers, dependency direction, and runtime guarantees**. It
-answers "what may depend on what, and what must always hold true," without
-naming the specific libraries that implement it.
-
-The layer model must fit the project, not a template. A CLI tool, an HTTP
-service, a mobile app and a library have genuinely different shapes, and forcing
-one onto another produces rules nobody follows. What is not optional is that
-*some* explicit model exists, with directional dependencies — because that is
-what `review-step` measures a diff against. "We'll keep it clean" is not a rule
-a reviewer can apply.
+What may depend on what, and what must always hold — without naming libraries.
+The layer model must fit this project rather than a template, but *some*
+explicit, directional model must exist: it is what `review-step` measures a diff
+against. Shape: `references/document-contracts.md`.
 
 Interview for:
 
 - The forces that actually shape this project: team size, expected lifetime,
   performance or offline constraints, what is likely to change.
-- The layers, as an `| Area | Owns | May depend on |` table with one row per
-  layer, above a Mermaid graph of the permitted arrows.
-- The imports that are forbidden, as bullets under that table. Permissions alone
-  leave every other combination ambiguous, so the forbidden cases need naming —
-  but name them, don't argue them.
+- The layers, what each owns and may depend on, and which imports are
+  forbidden.
 - How the pieces are assembled at startup, and who owns configuration.
 - How state and asynchronous work behave: what happens to a result that arrives
   after a newer one, what distinct states exist (loading, empty, loaded, failed,
@@ -127,54 +113,39 @@ Interview for:
 - How the architecture gets verified, and which tradeoffs are consciously
   accepted for now.
 
-End with a **Critical invariants** section: the short list of rules a senior
-reviewer would never let slide. Derive these from the decisions above rather
-than inventing them — they are the same rules, stated as one-line assertions so
-a reviewer can check a diff against each one. This is the section `review-step`
-reads on every diff, and the one `CLAUDE.md` points at in phase 6.
+End with **Critical invariants**, derived from the decisions above rather than
+invented. This is the section the companion skills check every task against, and
+the one `CLAUDE.md` points at in phase 6.
 
 ## Phase 3 — Technology and organization → `docs/TECHNICAL_DESIGN.md`
 
-This document owns **the concrete choices**: which technologies, which
-directories, which interfaces, which error vocabulary, which verification
-commands.
+The concrete choices: technologies, directories, interfaces, commands. Shape:
+`references/document-contracts.md`.
 
 Interview for:
 
-- Language, runtime, and the main frameworks or libraries, as a
-  `| Choice | Owner | Reason |` table. The reason is one clause, the length of a
-  label — enough that nobody relitigates it, short enough that it isn't an
-  argument.
-- The directory layout, mapped to the layers from phase 2 as a tree or a table.
-  Make it explicit which directory realizes which layer, so a boundary violation
-  is visible as a wrong import path.
+- Language, runtime, and the main frameworks or libraries, each with a
+  label-length reason.
+- The directory layout, mapped explicitly to the layers from phase 2, so a
+  boundary violation is visible as a wrong import path.
 - The key interfaces or contracts between layers, in enough detail to implement
   against.
 - The external services and their failure categories.
 - Persistence format, schema versioning, and commit behavior, if applicable.
-- The verification scripts: type checking, linting, tests, boundary checks,
-  builds. Name the actual commands, because `review-step` runs them as evidence.
-
-Mark decisions that are settled versus still open. An honest "open" is more
-useful than a confident guess that later gets contradicted by the code.
+- The verification commands — type check, lint, test, boundary check, build.
+  Name the actual commands, because `review-step` runs them as evidence.
+- Which decisions are settled and which are still open.
 
 ## Phase 4 — How code is written → `docs/CODING_CONVENTIONS.md`
 
-This document owns **naming, file shape, and test style** — the rules that apply
-to every task rather than to the layers one task happens to touch.
+Naming, file shape and test style — the rules every task follows. Shape:
+`references/document-contracts.md`.
 
-The highest-value part is a **vocabulary** table: the project's domain words,
-one agreed term per concept, with the near-synonyms it replaces. Naming drift is
-the most expensive kind of inconsistency because it is invisible until a rename
-touches forty files. Interview for the concepts that already have two names in
-the conversation — you will usually have heard several by now.
-
-Then cover, briefly: function and file naming, import rules, how types and
-domain values are declared, how failures are represented in code, test naming
-and structure, and what is enforced automatically versus by review.
-
-Keep this document short and checkable. A convention nobody can verify against a
-diff is decoration.
+Start with the **vocabulary**: interview for the concepts that already have two
+names in the conversation — you will usually have heard several by now. Then
+cover, briefly: function and file naming, import rules, how types and domain
+values are declared, how failures are represented in code, test naming and
+structure, and what is enforced automatically versus by review.
 
 ## Phase 5 — Order of work → `docs/DEVELOPMENT_PLAN.md`
 
