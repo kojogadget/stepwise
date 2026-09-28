@@ -69,8 +69,10 @@ the skills grep for.
 
 Keep tasks numbered `<iteration>.<position>` so ids stay unambiguous. Don't
 invent another status value — the plan has `Todo`, `Done` and `Dropped`. A task
-stays `Todo` until a review approves the change. `Dropped` marks a task
-abandoned on purpose; it stays in the plan so its id is never reused.
+stays `Todo` until a review approves the change, or, when retrofitting a plan
+onto existing code, until the user confirms the work is already built. `Dropped`
+marks a task abandoned on purpose; it stays in the plan so its id is never
+reused.
 
 ## The Test line is the whole contract
 

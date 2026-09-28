@@ -186,9 +186,20 @@ primers into `docs/primers/`: short idiom notes that `next-step` and
 first**; it has the index format the skills look for. This is optional; write
 them only on a go-ahead.
 
-Every task starts at `**Status:** Todo`. Never write any other status during
-planning, even for work that already exists in a retrofit — say so in the task
-instead and let the user decide.
+Every task starts at `**Status:** Todo`. In a retrofit, where much of the work
+already exists, ask which of two shapes the user wants:
+
+- **Remaining work only** — the plan starts at what is still to be built, and
+  the existing code is the baseline the first iteration builds on.
+- **Full history** — the plan also covers what already exists, so requirement
+  IDs trace end to end. List the tasks you believe are already built, with the
+  code that shows it, and mark them `Done` only for the ones the user confirms.
+  One confirmation can cover the whole list; anything they don't confirm stays
+  `Todo`.
+
+Never mark a task `Done` on your own reading of the code, and never write
+`Dropped` during planning — a task nobody intends to build doesn't belong in a
+new plan.
 
 ## Phase 6 — Wire it up → `CLAUDE.md`
 
