@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: revise-plan-appends-stable-id
+description: Adding a task proposes it as 1.4 at the end of iteration 1 without renumbering, and writes nothing before a go-ahead.
+tags: [revise-plan]
+context:
+  scaffold_script: setup.sh

@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: review-step-clean-proposes-done
+description: A clean task 1.2 with user-reported test evidence gets a ready verdict and a proposed Status edit, and the plan stays untouched.
+tags: [review-step]
+context:
+  scaffold_script: setup.sh

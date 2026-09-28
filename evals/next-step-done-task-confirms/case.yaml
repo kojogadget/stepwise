@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: next-step-done-task-confirms
+description: Naming a Done task makes next-step say so and ask for confirmation instead of briefing it as new work.
+tags: [next-step]
+context:
+  scaffold_script: setup.sh

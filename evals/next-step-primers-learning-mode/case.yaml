@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: next-step-primers-learning-mode
+description: With stack primers indexed in docs/primers/, next-step reads the matching primer and briefs in learning mode.
+tags: [next-step]
+context:
+  scaffold_script: setup.sh
