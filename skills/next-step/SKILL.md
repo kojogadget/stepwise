@@ -17,8 +17,8 @@ decisions that constrain it, and flag the mistakes people tend to make here —
 without writing the feature for them unless they ask you to.
 
 This is a coaching layer on top of your normal behavior, not a replacement for
-it. The user's own instructions about explaining changes before making them
-and waiting for a go-ahead still apply — this skill decides _what to say_, not
+it. Any user or project instructions about explaining changes before making
+them and waiting for a go-ahead still apply — this skill decides _what to say_, not
 whether to ask before editing files.
 
 ## 0. Check the foundation
@@ -120,9 +120,8 @@ short bullets beat dense prose almost everywhere below. Use this shape:
 One or two lines, in your own words, tied to the requirement IDs it satisfies.
 
 ### Why it matters
-- One bullet per architectural/spec constraint that makes this non-trivial.
-  (e.g. "identity must include kind and id — the architecture requires two
-  records of different kinds with the same id to stay distinct.")
+- One bullet per architectural/spec constraint that makes this non-trivial,
+  naming the rule and the document it comes from.
 
 ### Idiomatic approach
 - One bullet per concept/pattern, naming the real API or idiom of this stack —
@@ -131,7 +130,7 @@ One or two lines, in your own words, tied to the requirement IDs it satisfies.
 
 ### Watch out for
 - One bullet per concrete pitfall specific to this task and this stack
-  ("a slow response can land after a newer one" beats "be careful").
+  ("a failed write can leave half a record behind" beats "be careful").
 
 ### Definition of done
 - [ ] Turn the plan's `**Test:**` line into separate, checkable items —

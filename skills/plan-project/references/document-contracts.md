@@ -121,8 +121,7 @@ leave every other combination ambiguous. One line each, no justification:
 Section 6 is a short list of one-line assertions, each derived from a decision
 above, each checkable against a diff. Examples of the right grain:
 
-> - Identity includes both kind and id; two records of different kinds with the
->   same numeric id stay distinct.
+> - An order's total always equals the sum of its lines.
 > - Report success only after the storage transaction commits; preserve existing
 >   data when validation fails.
 > - Keep credentials out of diagnostics.

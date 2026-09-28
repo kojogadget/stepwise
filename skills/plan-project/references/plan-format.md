@@ -79,17 +79,18 @@ if the conditions are **observable and individually checkable**.
 
 **Weak — nothing to check:**
 
-> **Test:** Verify that pagination works correctly.
+> **Test:** Verify that importing works correctly.
 
 `next-step` produces one useless checkbox. `review-step` can only shrug: the code
 exists, so presumably it works. The task can be marked done with a broken
 implementation and nobody notices.
 
-**Strong — six checkable conditions:**
+**Strong — five checkable conditions:**
 
-> **Test:** Supply multiple fixture pages, including duplicates. Verify unique
-> identities, exhaustion, prevention of simultaneous next-page loads, and retry
-> after a failed page without losing earlier results.
+> **Test:** Import a fixture file with a header row, a blank line, a duplicate
+> row and a malformed row. Verify valid rows are stored once, blank lines are
+> skipped, the malformed row is reported with its line number, and a failed
+> import leaves existing records untouched.
 
 Every clause names a condition a test can assert and a reviewer can look for.
 Note what it does *not* do: it never names a function, a file, or an assertion
@@ -147,16 +148,16 @@ test condition and still miss its goal — the tests pass, but the feature isn't
 reachable by a user yet. Keeping them distinct is what lets `review-step` surface
 that gap instead of reporting a green checklist.
 
-Write the Goal so it names the outcome, not the activity: "Load additional
-results while keeping the existing list usable" rather than "Implement
-pagination."
+Write the Goal so it names the outcome, not the activity: "Bring existing
+records in from a spreadsheet without losing or duplicating any" rather than
+"Implement CSV import."
 
 ## Tip lines
 
 Include them only when the developer is learning the stack. When present, a Tip
 names concepts to look up, never instructions to follow:
 
-> **Tip:** Look up cursor pagination, deduplication, and incremental loading.
+> **Tip:** Look up streaming parsers, idempotent writes, and transactions.
 
 Linking to primary documentation is fine. Explaining the concept inline is not —
 that turns the plan into a tutorial and defeats the point of leaving the

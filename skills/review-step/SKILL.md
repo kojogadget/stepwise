@@ -25,8 +25,8 @@ approach that fights the framework or crosses a layer boundary. Say so
 explicitly when that happens rather than collapsing both into one verdict.
 
 This is a coaching layer on top of your normal behavior, not a replacement
-for it. The user's own instructions about explaining changes before making
-them and waiting for a go-ahead still apply.
+for it. Any user or project instructions about explaining changes before
+making them and waiting for a go-ahead still apply.
 
 ## 1. Find the task
 
@@ -144,13 +144,12 @@ Review the diff like a senior reviewer on this specific codebase:
   reaching past the contract into an implementation, a private module leaking
   into a shared one, etc.) — call these out with the same weight as a
   correctness bug, not as a style nit.
-- Any critical invariant this diff touches and doesn't honor — identity,
-  ordering of asynchronous results, transactional writes, documented failure
-  types, credential handling, or whatever the project's list holds.
+- Any critical invariant from the project's list that this diff touches and
+  doesn't honor.
 - Idiom mismatches against the stack — code that works but fights the
-  framework (e.g., copying derived state by hand where the framework derives
-  it, or a hand-rolled timer where the project already has an established
-  pattern) is worth flagging even when it technically passes.
+  framework or the language (e.g., hand-rolling what the standard library
+  provides, or bypassing a pattern the project already established for the same
+  job) is worth flagging even when it technically passes.
 - Convention deviations against `docs/CODING_CONVENTIONS.md`: a concept called
   by a name its Vocabulary table forbids, a function whose prefix promises
   something else (`create` vs `parse`), a file ordered against its file-shape

@@ -72,8 +72,7 @@ Interview for:
 
 - What the product is, who uses it, and what problem it solves.
 - The journeys that must work. Push for the complete path, including the boring
-  end: not "search for a title" but "search, inspect, save, restart, revisit,
-  remove."
+  end: not "create an invoice" but "create, send, get paid, correct, archive."
 - What is deliberately **out** of the first release. This matters more than it
   looks. Without a place for later ambitions to live, they leak into the plan
   and the first release never ships.
@@ -84,7 +83,7 @@ Interview for:
   third-party attribution, regulatory constraints.
 
 Then assign **requirement IDs** — short prefixed identifiers grouped by area
-(`SRCH-01`, `LIST-03`, `REL-02`). These are the join key of the whole system:
+(`ACCT-01`, `BILL-03`, `NOTIF-02`). These are the join key of the whole system:
 the plan references them per iteration, and `next-step` greps the spec for them
 to find the rules behind a task. Without them, every task briefing has to guess.
 
@@ -243,7 +242,7 @@ Include:
 Leave out project description, architecture explanation, and the invariants
 themselves — those live in the documents, and the table says where. One line
 pointing at the architecture's invariants section does the same job as copying
-sixteen of them, without the drift.
+all of them, without the drift.
 
 **Never overwrite an existing `CLAUDE.md`.** Read it first. Add only the
 sections that are missing, keeping the existing ones untouched and the existing
