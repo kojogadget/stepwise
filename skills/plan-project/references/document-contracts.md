@@ -48,9 +48,11 @@ vocabulary of someone using the product, not building it.
 ```
 
 Requirement IDs carry the weight here. Group them by area with a short prefix
-and number them within it (`SRCH-01`, `LIST-04`, `REL-02`). Each ID should mark
+and number them within it (`ACCT-01`, `BILL-04`, `NOTIF-02`). Each ID should mark
 one behavior specific enough that a reviewer can tell whether a diff satisfies
-it. They are the join key the plan references and `next-step` greps for.
+it. They are the join key the plan references and `next-step` greps for, so
+define each one exactly once, as the first cell of a table row or the start of a
+bullet — the syntax is in `plan-format.md`.
 
 Section 6 is the one most often skipped and most often needed. Specify what the
 user sees while loading, when a result set is empty, when an operation fails,

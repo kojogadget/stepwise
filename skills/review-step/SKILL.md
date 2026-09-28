@@ -85,8 +85,9 @@ changes don't inflate or dilute the task's own verdict.
 Read with a reviewer's eye — these are what the diff is checked against, not
 general best practice:
 
-- The iteration's `**Requirements:**` line → grep `docs/SPECIFICATION.md` for
-  those IDs and read those sections.
+- The iteration's `**Requirements:**` line → expand any range (`ACCT-01–03`
+  means `ACCT-01`, `ACCT-02`, `ACCT-03`), grep `docs/SPECIFICATION.md` for each
+  ID, and read the row or bullet that defines it plus its section.
 - `docs/ARCHITECTURE.md` for the layer(s) touched: its dependency table,
   forbidden imports and runtime guarantees.
 - The **critical invariants** — the `Critical invariants` section of

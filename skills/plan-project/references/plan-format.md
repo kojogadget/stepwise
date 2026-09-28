@@ -30,7 +30,7 @@ working rules that apply to every iteration.>
 
 **Milestone:** <what you can demonstrate once this iteration is complete>
 
-**Requirements:** <requirement IDs from SPECIFICATION.md, e.g. SRCH-01–05>
+**Requirements:** <requirement IDs from SPECIFICATION.md, e.g. ACCT-01–03, ACCT-05>
 
 ### <n>.<m> <task title, imperative>
 
@@ -54,6 +54,18 @@ working rules that apply to every iteration.>
 | `- **Goal:**` | The briefing's framing; `review-step` checks it separately from the tests |
 | `- **Test:**` | Split into the definition-of-done checklist and the completion check |
 | `**Requirements:**` on the iteration | Locating the governing spec sections for every task inside it |
+
+### Requirement IDs
+
+An ID is an uppercase prefix, a hyphen and a two-digit number: `ACCT-03`. The
+`**Requirements:**` line lists IDs separated by commas. `PREFIX-NN–NN`, with an
+en dash, is a range within one prefix and means every ID in it: `ACCT-01–03` is
+`ACCT-01, ACCT-02, ACCT-03`. The skills expand ranges before searching, since a
+range never appears literally in the specification.
+
+In `SPECIFICATION.md`, each ID appears exactly once where it is defined: as the
+first cell of a table row or at the start of a bullet. That definition is what
+the skills grep for.
 
 Keep tasks numbered `<iteration>.<position>` so ids stay unambiguous. Don't
 invent a third status value — the plan has `Todo` and `Done`, and a task stays

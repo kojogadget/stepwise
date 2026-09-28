@@ -64,8 +64,9 @@ implementation has to satisfy. Product requirements constrain architecture,
 architecture constrains technical design, and conventions apply to everything.
 Read the sections that matter to this task, not whole files.
 
-- The iteration's `**Requirements:**` line (e.g. `SRCH-01–05`) → grep
-  `docs/SPECIFICATION.md` for those IDs and read those sections.
+- The iteration's `**Requirements:**` line → expand any range (`ACCT-01–03`
+  means `ACCT-01`, `ACCT-02`, `ACCT-03`), grep `docs/SPECIFICATION.md` for each
+  ID, and read the row or bullet that defines it plus its section.
 - `docs/ARCHITECTURE.md` for the layer(s) this task touches: its dependency
   table, forbidden imports and runtime guarantees.
 - The **critical invariants** — the `Critical invariants` section of
