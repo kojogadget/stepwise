@@ -70,9 +70,10 @@ Read the sections that matter to this task, not whole files.
 - `docs/ARCHITECTURE.md` for the layer(s) this task touches: its dependency
   table, forbidden imports and runtime guarantees.
 - The **critical invariants** — the `Critical invariants` section of
-  `docs/ARCHITECTURE.md`, or, if it has none, a section of that name in the
-  project `CLAUDE.md`. Note every one this task plausibly touches; these are
-  the things a senior reviewer would never let slide.
+  `docs/ARCHITECTURE.md`. Note every one this task plausibly touches; these are
+  the things a senior reviewer would never let slide. Only when the
+  architecture has no such section — typically a retrofit that kept its own
+  docs — fall back to a section of that name in the project `CLAUDE.md`.
 - `docs/TECHNICAL_DESIGN.md` for the concrete technologies, directories and
   interfaces of those layers. Its technologies table is the stack you are
   coaching on — don't assume one.

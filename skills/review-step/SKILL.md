@@ -93,9 +93,10 @@ general best practice:
 - `docs/ARCHITECTURE.md` for the layer(s) touched: its dependency table,
   forbidden imports and runtime guarantees.
 - The **critical invariants** — the `Critical invariants` section of
-  `docs/ARCHITECTURE.md`, or, if it has none, a section of that name in the
-  project `CLAUDE.md`. Check every one plausibly touched by this diff, not just
-  the obvious one.
+  `docs/ARCHITECTURE.md`. Check every one plausibly touched by this diff, not
+  just the obvious one. Only when the architecture has no such section —
+  typically a retrofit that kept its own docs — fall back to a section of that
+  name in the project `CLAUDE.md`.
 - `docs/TECHNICAL_DESIGN.md` for the concrete interfaces the layer is supposed
   to follow, and for its verification commands.
 - `docs/CODING_CONVENTIONS.md` for vocabulary, naming, file shape and test
