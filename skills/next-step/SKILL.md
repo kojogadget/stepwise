@@ -50,8 +50,8 @@ tasks, and may have standalone notes after them. Requirement IDs look like
 `ACCT-03`; `ACCT-01–03`, with an en dash, is a range meaning every ID in it.
 
 If no `### <n>.<m>` task headings parse, or a task has a status other than
-`Todo` or `Done`, the plan doesn't follow the format. Say which heading or line
-is off and stop — don't guess at a structure the plan doesn't have.
+`Todo`, `Done` or `Dropped`, the plan doesn't follow the format. Say which
+heading or line is off and stop — don't guess at a structure the plan doesn't have.
 
 Resolve the argument, if one was given:
 
@@ -65,9 +65,12 @@ Resolve the argument, if one was given:
 No argument → walk the file top to bottom and pick the first task whose status
 is `Todo`.
 
-If the resolved task's status is not `Todo` (e.g. already `Done`), say so
-explicitly and confirm they actually want to revisit it before coaching on it
-as if it were new.
+Skip `Dropped` tasks when picking or matching — they were abandoned on purpose,
+and only an explicit dotted id reaches one.
+
+If the resolved task's status is not `Todo` (already `Done`, or `Dropped`), say
+so explicitly and confirm they actually want to revisit it before coaching on
+it as if it were new.
 
 ## 2. Pull in the governing context
 

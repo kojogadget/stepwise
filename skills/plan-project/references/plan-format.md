@@ -48,7 +48,7 @@ stack. Working rules live in CLAUDE.md, not here.>
 | --- | --- |
 | `## Iteration <n> — <title>` | Grouping tasks; `next-step` accepts a bare iteration number as its argument |
 | `### <n>.<m> <title>` | Task identity; both skills accept a dotted id like `2.3` |
-| `- **Status:** Todo\|Done` | Finding the next unfinished task; both skills refuse to silently re-brief a `Done` task |
+| `- **Status:** Todo\|Done\|Dropped` | Finding the next unfinished task; both skills skip `Dropped` tasks and refuse to silently re-brief a `Done` or `Dropped` one |
 | `- **Goal:**` | The briefing's framing; `review-step` checks it separately from the tests |
 | `- **Test:**` | Split into the definition-of-done checklist and the completion check |
 | `**Requirements:**` on the iteration | Locating the governing spec sections for every task inside it |
@@ -68,8 +68,9 @@ first cell of a table row or at the start of a bullet. That definition is what
 the skills grep for.
 
 Keep tasks numbered `<iteration>.<position>` so ids stay unambiguous. Don't
-invent a third status value — the plan has `Todo` and `Done`, and a task stays
-`Todo` until a review approves the change.
+invent another status value — the plan has `Todo`, `Done` and `Dropped`. A task
+stays `Todo` until a review approves the change. `Dropped` marks a task
+abandoned on purpose; it stays in the plan so its id is never reused.
 
 ## The Test line is the whole contract
 

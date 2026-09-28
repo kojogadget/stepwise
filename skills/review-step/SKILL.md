@@ -58,8 +58,8 @@ tasks, and may have standalone notes after them. Requirement IDs look like
 `ACCT-03`; `ACCT-01–03`, with an en dash, is a range meaning every ID in it.
 
 If no `### <n>.<m>` task headings parse, or a task has a status other than
-`Todo` or `Done`, the plan doesn't follow the format. Say which heading or line
-is off and stop — don't guess at a structure the plan doesn't have.
+`Todo`, `Done` or `Dropped`, the plan doesn't follow the format. Say which
+heading or line is off and stop — don't guess at a structure the plan doesn't have.
 
 Resolve the argument:
 
@@ -81,6 +81,10 @@ ask rather than guessing — reviewing the wrong task's criteria wastes real wor
 
 If the resolved task's status is already `Done`, say so and confirm the user
 wants a re-review before proceeding.
+
+`Dropped` tasks are never candidates for the default or a topic match. If the
+resolved task is `Dropped`, say so and don't review it unless the user confirms
+— a dropped task has no work expected against it.
 
 ## 2. Gather the diff
 
