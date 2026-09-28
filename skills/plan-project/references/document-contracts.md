@@ -23,6 +23,9 @@ people read most, so rules drift into it and stop being enforceable, because
 `review-step` looks for rules in the architecture and conventions. Keep the plan
 as ordering and evidence only.
 
+Stack primers in `docs/primers/` are not a sixth document: they hold idioms, not
+rules. See `primers.md`.
+
 ---
 
 ## SPECIFICATION.md

@@ -205,6 +205,12 @@ each task gets a `**Tip:**` line pointing at the concepts to look up — the pla
 then describes outcomes and leaves implementation as an exercise. If they know
 the stack, drop the tips; they add noise to a plan the author could have written.
 
+When they are learning, offer — once the plan is confirmed — to write stack
+primers into `docs/primers/`: short idiom notes that `next-step` and
+`review-step` read alongside the Tip lines. **Read `references/primers.md`
+first**; it has the index format the skills look for. This is optional; write
+them only on a go-ahead.
+
 Every task starts at `**Status:** Todo`. Never write any other status during
 planning, even for work that already exists in a retrofit — say so in the task
 instead and let the user decide.
@@ -313,8 +319,9 @@ you. It has no business in the artifact.
 
 ## When you are done
 
-Report what was written, and tell the user the workflow is now live: `next-step`
-will pick up task 1.1, `review-step` will check it afterwards.
+Report what was written, and tell the user the workflow is now live:
+`/stepwise:next-step` will pick up task 1.1, `/stepwise:review-step` will check
+it afterwards.
 
 Then stop. Do not start implementing the first task — planning and building are
 separate acts, and the whole point of the plan is that the user chooses when to
@@ -327,3 +334,5 @@ begin.
 - `references/document-contracts.md` — what each of the five documents owns, its
   section structure, and the boundary mistakes to avoid. Read before phase 1,
   and re-check whenever an answer seems to belong in two places.
+- `references/primers.md` — the optional `docs/primers/` index and file shape.
+  Read before offering primers in phase 5.
