@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: next-step-picks-todo
+description: With no argument, next-step briefs the first Todo task in a non-Expo project.
+tags: [next-step]
+context:
+  scaffold_script: setup.sh

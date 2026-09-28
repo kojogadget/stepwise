@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: review-step-flags-boundary
+description: review-step finds the task from the diff, blocks on a boundary violation, and only proposes the Status edit.
+tags: [review-step]
+context:
+  scaffold_script: setup.sh
