@@ -153,8 +153,9 @@ verification commands. This is where names appear.
 Section 1 separates settled decisions from open ones. An honest "open" is worth
 more than a confident guess the code later contradicts.
 
-Section 2 gives each significant choice a one-line reason. Not a survey — the
-reason it beat the obvious alternative here.
+Section 2 gives each significant choice a reason one clause long, the length of
+a label — what it gives this project, never a comparison with the alternative
+it beat.
 
 Section 3 maps directories to the architecture's layers explicitly, so a boundary
 violation shows up as a wrong import path rather than a judgement call.
