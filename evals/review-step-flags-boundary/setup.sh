@@ -1,6 +1,12 @@
 #!/bin/bash
-set -e
-cp -R "$(dirname "$0")/../fixtures/tally/." .
+set -euo pipefail
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cp -R "$here/../fixtures/tally/." .
+
+# Keep the developer's git config (signing, hooks, templates) out of the
+# fixture repository.
+export GIT_CONFIG_GLOBAL=/dev/null
+export GIT_CONFIG_NOSYSTEM=1
 mkdir -p tally tests
 cat > tally/counting.py <<'PY'
 def count_words(text: str) -> int:

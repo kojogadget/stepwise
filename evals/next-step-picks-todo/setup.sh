@@ -1,3 +1,4 @@
 #!/bin/bash
-set -e
-cp -R "$(dirname "$0")/../fixtures/tally/." .
+set -euo pipefail
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cp -R "$here/../fixtures/tally/." .
