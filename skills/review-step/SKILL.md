@@ -49,11 +49,13 @@ Resolve the argument:
   plausible match exists, list them and ask which one.
 
 No argument → this is the common case, since a task stays `Todo` until a review
-approves flipping it to `Done` (the plan has no "in progress" status). Inspect
-the diff first (step 2), then match its files and requirement IDs against task
-titles and iteration scope to identify the task. If more than one task
-plausibly matches, or nothing does, list your best candidates and ask rather
-than guessing — reviewing the wrong task's criteria wastes real work.
+approves flipping it to `Done` (the plan has no "in progress" status). The
+first `Todo` task in the plan is the default candidate. Inspect the diff first
+(step 2) to confirm it: map the changed paths to layers through the directory
+map in `docs/TECHNICAL_DESIGN.md`, then compare those layers and what the code
+does against each candidate's Goal and Test lines. If the diff fits a different
+task better, or more than one plausibly, or none, list your best candidates and
+ask rather than guessing — reviewing the wrong task's criteria wastes real work.
 
 If the resolved task's status is already `Done`, say so and confirm the user
 wants a re-review before proceeding.
