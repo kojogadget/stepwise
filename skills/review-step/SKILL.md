@@ -2,8 +2,11 @@
 name: review-step
 description: Review the current diff against a task's Goal and Test lines in docs/DEVELOPMENT_PLAN.md, the architecture's dependency rules and invariants, and the coding conventions. Proposes, never applies, a Status update.
 disable-model-invocation: true
-argument-hint: "[step-id | iteration-number | topic]"
+argument-hint: "[step-id | iteration-number | topic] [-- manual evidence]"
 effort: high
+context: fork
+agent: step-reviewer
+background: false
 ---
 
 # Review step
@@ -25,11 +28,41 @@ approach that fights the framework or crosses a layer boundary. Say so
 explicitly when that happens rather than collapsing both into one verdict.
 
 This is a coaching layer on top of your normal behavior, not a replacement
-for it. Any user or project instructions about explaining changes before
-making them and waiting for a go-ahead still apply.
+for it. The review changes nothing: it reads, runs verification commands and
+reports.
 
-Answer in the language of the conversation. Keep the section headings below,
-task ids, requirement IDs and code identifiers exactly as written.
+Answer in the language of the arguments' prose when there is any, otherwise in
+the language of the plan. Keep the section headings below, task ids,
+requirement IDs and code identifiers exactly as written.
+
+## Arguments and what this review can see
+
+This skill runs in a forked `step-reviewer` agent, so the review starts from a
+clean context: the code, the diff and `docs/`, without the tokens of the
+build session and without anchoring on how the author described the work. The
+tradeoff is that it doesn't see the conversation either. Anything the user
+checked by hand — "I ran it against a directory and got the error line" — only
+counts as evidence if it's passed in the arguments.
+
+The arguments are:
+
+```
+$ARGUMENTS
+```
+
+Read them as `[task selector] [-- manual evidence]`:
+
+- Everything before a standalone `--` is the task selector used in step 1: a
+  dotted id, a bare iteration number or a topic phrase. It may be empty.
+- Everything after `--` is the user's report of manual or behavioral
+  evidence, in their words. Use it in step 4, attributed to the user — it's
+  what they reported, not something you observed.
+- No `--` → the whole argument is the selector, and there is no manual
+  evidence.
+
+The review can't ask a question and wait for the answer. Wherever the steps
+below say to ask, end the review there: state the question and the choices,
+and give the exact re-run to use, e.g. `/stepwise:review-step 2.3 -- <evidence>`.
 
 ## 0. Check the foundation
 
@@ -61,7 +94,7 @@ If no `### <n>.<m>` task headings parse, or a task has a status other than
 `Todo`, `Done` or `Dropped`, the plan doesn't follow the format. Say which
 heading or line is off and stop — don't guess at a structure the plan doesn't have.
 
-Resolve the argument:
+Resolve the selector:
 
 - A dotted id like `2.3` → that exact task.
 - A bare iteration number → if exactly one task in that iteration has
@@ -70,7 +103,7 @@ Resolve the argument:
 - A topic phrase → match against task titles and goals; if more than one
   plausible match exists, list them and ask which one.
 
-No argument → this is the common case, since a task stays `Todo` until a review
+No selector → this is the common case, since a task stays `Todo` until a review
 approves flipping it to `Done` (the plan has no "in progress" status). The
 first `Todo` task in the plan is the default candidate. Inspect the diff first
 (step 2) to confirm it: map the changed paths to layers through the directory
@@ -79,12 +112,14 @@ does against each candidate's Goal and Test lines. If the diff fits a different
 task better, or more than one plausibly, or none, list your best candidates and
 ask rather than guessing — reviewing the wrong task's criteria wastes real work.
 
-If the resolved task's status is already `Done`, say so and confirm the user
-wants a re-review before proceeding.
+If the resolved task's status is already `Done`, say so. A dotted id naming
+it is the confirmation that a re-review is wanted, so proceed; if it was
+resolved any other way, ask for the id before reviewing it.
 
 `Dropped` tasks are never candidates for the default or a topic match. If the
-resolved task is `Dropped`, say so and don't review it unless the user confirms
-— a dropped task has no work expected against it.
+resolved task is `Dropped`, say so and don't review it unless the selector
+names its dotted id and asks for it explicitly (e.g. `3.1 anyway`) — a dropped
+task has no work expected against it.
 
 ## 2. Gather the diff
 
@@ -147,7 +182,10 @@ checklist. For each condition, look for concrete evidence in the diff:
 
 - A test that exercises exactly that condition (name it, and skim whether
   its assertions actually cover the condition or just run the code path).
-- Manual/behavioral evidence the user has reported in this conversation.
+- Manual/behavioral evidence the user passed after `--` in the arguments.
+  You can't see the conversation, so a condition that needs a manual
+  demonstration and has none in the arguments is unaddressed — say what the
+  user would need to report.
 - Neither — the condition is unaddressed.
 
 Run the verification commands that cover this task's area — the ones named in
@@ -235,6 +273,17 @@ don't skip the section header, since its absence is itself informative.
 ## 7. Status updates
 
 Never flip a task's `**Status:**` to `Done` yourself, even when the verdict
-is clean. Propose the exact edit and point to the evidence from step 4
-(verification output, plus any manual demonstration the Test line asks for),
-and let the user confirm before you make it.
+is clean — this review can't edit files and can't wait for a yes. When the
+verdict is ready to propose Done, end the review with the exact edit and point
+to the evidence from step 4 (verification output, plus any manual
+demonstration the Test line asks for):
+
+```
+### Proposed Status edit — apply only after the user confirms
+`<path to DEVELOPMENT_PLAN.md>`, task <task id>:
+- **Status:** Todo  →  - **Status:** Done
+```
+
+The review ends there and returns to the main conversation, which shows it to
+the user and makes that one-line edit only after they say yes. Nothing else in
+the plan changes as part of a review.
