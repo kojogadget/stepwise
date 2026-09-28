@@ -64,6 +64,8 @@ implementation has to satisfy. Product requirements constrain architecture,
 architecture constrains technical design, and conventions apply to everything.
 Read the sections that matter to this task, not whole files.
 
+- The iteration's `**Milestone:**` line and any notes after its tasks — a note
+  is a constraint on every task in the iteration, this one included.
 - The iteration's `**Requirements:**` line → expand any range (`ACCT-01–03`
   means `ACCT-01`, `ACCT-02`, `ACCT-03`), grep `docs/SPECIFICATION.md` for each
   ID, and read the row or bullet that defines it plus its section.

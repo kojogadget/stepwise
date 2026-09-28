@@ -13,18 +13,14 @@ stops working.
 
 ## Approach and assumptions
 
-<Two or three paragraphs: what this plan assumes about the reader, and the
-working rules that apply to every iteration.>
+<One or two short paragraphs: what this plan assumes about the reader and the
+stack. Working rules live in CLAUDE.md, not here.>
 
 **Visible milestones:**
 
 | After iteration | What you can demonstrate |
 | --------------- | ------------------------ |
 | 1               | <something runnable>     |
-
-### Working rules
-
-- <One bullet per rule that applies across all iterations.>
 
 ## Iteration <n> — <short outcome-shaped title>
 
@@ -38,6 +34,8 @@ working rules that apply to every iteration.>
 - **Goal:** <the outcome, one sentence>
 - **Test:** <the observable conditions that prove it>
 - **Tip:** <concepts to look up — only when the developer is learning the stack>
+
+<Optional note: a constraint that applies across this iteration's tasks.>
 
 ## Definition of completion
 
@@ -54,6 +52,8 @@ working rules that apply to every iteration.>
 | `- **Goal:**` | The briefing's framing; `review-step` checks it separately from the tests |
 | `- **Test:**` | Split into the definition-of-done checklist and the completion check |
 | `**Requirements:**` on the iteration | Locating the governing spec sections for every task inside it |
+| `**Milestone:**` on the iteration | Checking whether the iteration's last task leaves something demonstrable |
+| Notes after an iteration's tasks | Cross-task constraints both skills apply to every task in that iteration |
 
 ### Requirement IDs
 

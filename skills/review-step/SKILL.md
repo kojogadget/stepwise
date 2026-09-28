@@ -87,6 +87,8 @@ changes don't inflate or dilute the task's own verdict.
 Read with a reviewer's eye — these are what the diff is checked against, not
 general best practice:
 
+- The iteration's `**Milestone:**` line and any notes after its tasks — a note
+  is a constraint on every task in the iteration, so check the diff against it.
 - The iteration's `**Requirements:**` line → expand any range (`ACCT-01–03`
   means `ACCT-01`, `ACCT-02`, `ACCT-03`), grep `docs/SPECIFICATION.md` for each
   ID, and read the row or bullet that defines it plus its section.
