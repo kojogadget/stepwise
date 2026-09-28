@@ -52,7 +52,10 @@ Read the plan in full for the ordered task list. Its structure is a fixed
 contract, described in
 `${CLAUDE_PLUGIN_ROOT}/skills/plan-project/references/plan-format.md`: each task
 is a `### <n>.<m> <title>` heading under a `## Iteration <n> — <title>` heading,
-with a `**Status:**` line, and a `**Requirements:**` line on the iteration.
+with `**Status:**`, `**Goal:**`, `**Test:**` and optionally `**Tip:**` lines.
+Each iteration has a `**Milestone:**` and a `**Requirements:**` line before its
+tasks, and may have standalone notes after them. Requirement IDs look like
+`ACCT-03`; `ACCT-01–03`, with an en dash, is a range meaning every ID in it.
 
 If no `### <n>.<m>` task headings parse, or a task has a status other than
 `Todo` or `Done`, the plan doesn't follow the format. Say which heading or line
