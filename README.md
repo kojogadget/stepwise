@@ -25,6 +25,71 @@ plugin keeps the bookkeeping honest.
 When the plan itself turns out wrong, `/stepwise:revise-plan` changes it and
 the loop carries on.
 
+## How it works
+
+### The documents
+
+| Document | Owns |
+| --- | --- |
+| `docs/SPECIFICATION.md` | Product behavior, requirement IDs, completion criteria |
+| `docs/ARCHITECTURE.md` | Layers, dependency direction, runtime guarantees, critical invariants |
+| `docs/TECHNICAL_DESIGN.md` | Technologies, directories, interfaces, verification commands |
+| `docs/CODING_CONVENTIONS.md` | Vocabulary, naming, file shape, test style |
+| `docs/DEVELOPMENT_PLAN.md` | Iterations, tasks, status and Test lines — in a fixed, parsed format |
+
+The plan format is defined in
+[`skills/plan-project/references/plan-format.md`](skills/plan-project/references/plan-format.md):
+statuses are `Todo`, `Done` and `Dropped`, and requirement ranges like
+`ACCT-01–03` expand to every ID in them.
+
+Optional **stack primers** in `docs/primers/` give the companion skills curated
+idiom notes when you are learning the stack. See
+[`skills/plan-project/references/primers.md`](skills/plan-project/references/primers.md).
+
+### The reviewer agent
+
+`review-step` runs forked in the read-only `step-reviewer` agent. It starts
+from a clean context — the code, the diff and `docs/` — so it doesn't anchor on
+how the work was described while building it. It can run `git` and the
+project's verification commands, but can't edit anything, so it ends with the
+proposed Status edit and the main conversation applies it after your yes.
+
+The tradeoff: the reviewer doesn't see the conversation. Anything you checked
+by hand counts only if you pass it after `--`:
+
+```sh
+/stepwise:review-step 1.2 -- ran it on a directory and got a ReadFailure
+```
+
+Where it would need to ask you something, it ends with the question and the
+exact command to re-run with the answer.
+
+### The session hook
+
+On startup, resume, `/clear` and compaction, a SessionStart hook prints the
+first `Todo` task — id, title and Goal — from `docs/DEVELOPMENT_PLAN.md`, so a
+fresh session knows where the plan stands. It is silent when there is no plan
+or nothing left to do.
+
+## Install
+
+The repository is its own marketplace, so it installs straight from GitHub. You
+need read access to the repository.
+
+```sh
+/plugin marketplace add kojogadget/stepwise
+/plugin install stepwise@stepwise
+```
+
+Update later with `/plugin marketplace update stepwise`.
+
+To try it without installing, clone the repository and start a session with it
+loaded:
+
+```sh
+claude --plugin-dir path/to/stepwise
+```
+
 ## Commands
 
 | Command | Does |
@@ -139,71 +204,6 @@ What stepwise combines that the others don't:
 
 Pick Spec Kit or Superpowers if you want the agent to do the implementing;
 pick stepwise if you want to build, or pair, one verified step at a time.
-
-## How it works
-
-### The documents
-
-| Document | Owns |
-| --- | --- |
-| `docs/SPECIFICATION.md` | Product behavior, requirement IDs, completion criteria |
-| `docs/ARCHITECTURE.md` | Layers, dependency direction, runtime guarantees, critical invariants |
-| `docs/TECHNICAL_DESIGN.md` | Technologies, directories, interfaces, verification commands |
-| `docs/CODING_CONVENTIONS.md` | Vocabulary, naming, file shape, test style |
-| `docs/DEVELOPMENT_PLAN.md` | Iterations, tasks, status and Test lines — in a fixed, parsed format |
-
-The plan format is defined in
-[`skills/plan-project/references/plan-format.md`](skills/plan-project/references/plan-format.md):
-statuses are `Todo`, `Done` and `Dropped`, and requirement ranges like
-`ACCT-01–03` expand to every ID in them.
-
-Optional **stack primers** in `docs/primers/` give the companion skills curated
-idiom notes when you are learning the stack. See
-[`skills/plan-project/references/primers.md`](skills/plan-project/references/primers.md).
-
-### The reviewer agent
-
-`review-step` runs forked in the read-only `step-reviewer` agent. It starts
-from a clean context — the code, the diff and `docs/` — so it doesn't anchor on
-how the work was described while building it. It can run `git` and the
-project's verification commands, but can't edit anything, so it ends with the
-proposed Status edit and the main conversation applies it after your yes.
-
-The tradeoff: the reviewer doesn't see the conversation. Anything you checked
-by hand counts only if you pass it after `--`:
-
-```sh
-/stepwise:review-step 1.2 -- ran it on a directory and got a ReadFailure
-```
-
-Where it would need to ask you something, it ends with the question and the
-exact command to re-run with the answer.
-
-### The session hook
-
-On startup, resume, `/clear` and compaction, a SessionStart hook prints the
-first `Todo` task — id, title and Goal — from `docs/DEVELOPMENT_PLAN.md`, so a
-fresh session knows where the plan stands. It is silent when there is no plan
-or nothing left to do.
-
-## Install
-
-The repository is its own marketplace, so it installs straight from GitHub. You
-need read access to the repository.
-
-```sh
-/plugin marketplace add kojogadget/stepwise
-/plugin install stepwise@stepwise
-```
-
-Update later with `/plugin marketplace update stepwise`.
-
-To try it without installing, clone the repository and start a session with it
-loaded:
-
-```sh
-claude --plugin-dir path/to/stepwise
-```
 
 ## Develop
 
