@@ -7,11 +7,6 @@ cp -R "$here/../fixtures/tally/." .
 # fixture repository.
 export GIT_CONFIG_GLOBAL=/dev/null
 export GIT_CONFIG_NOSYSTEM=1
-mkdir -p tally tests
-cat > tally/counting.py <<'PY'
-def count_words(text: str) -> int:
-    return len(text.split())
-PY
 git init -q -b main
 git -c user.name=eval -c user.email=eval@example.com add .
 git -c user.name=eval -c user.email=eval@example.com commit -q -m "feat: count words in a string"

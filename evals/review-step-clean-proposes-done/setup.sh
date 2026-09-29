@@ -7,11 +7,6 @@ cp -R "$here/../fixtures/tally/." .
 # fixture repository.
 export GIT_CONFIG_GLOBAL=/dev/null
 export GIT_CONFIG_NOSYSTEM=1
-mkdir -p tally tests
-cat > tally/counting.py <<'PY'
-def count_words(text: str) -> int:
-    return len(text.split())
-PY
 git init -q -b main
 git -c user.name=eval -c user.email=eval@example.com add .
 git -c user.name=eval -c user.email=eval@example.com commit -q -m "feat: count words in a string"
@@ -34,6 +29,10 @@ def read_text(path: str) -> "str | ReadFailure":
         return ReadFailure(path, "no such file")
     except IsADirectoryError:
         return ReadFailure(path, "is a directory")
+    except UnicodeDecodeError:
+        return ReadFailure(path, "not valid UTF-8")
+    except OSError as exc:
+        return ReadFailure(path, exc.strerror or "unreadable")
 PY
 cat > tests/test_files.py <<'PY'
 from tally.files import ReadFailure, read_text
@@ -52,6 +51,12 @@ def test_missing_file_returns_read_failure(tmp_path):
 
 def test_directory_returns_read_failure(tmp_path):
     assert read_text(str(tmp_path)) == ReadFailure(str(tmp_path), "is a directory")
+
+
+def test_undecodable_file_returns_read_failure(tmp_path):
+    path = tmp_path / "binary.txt"
+    path.write_bytes(b"\xff\xfe\x00")
+    assert read_text(str(path)) == ReadFailure(str(path), "not valid UTF-8")
 
 
 def test_read_prints_nothing(tmp_path, capsys):
