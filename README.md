@@ -112,6 +112,34 @@ is the undo.
 - **A plugin release you don't like** — the previous behavior is tagged:
   check out `v0.1.0` and load it with `claude --plugin-dir`.
 
+## Compared with alternatives
+
+Several Claude Code plugins cover spec-driven or step-by-step development.
+Most aim to let the agent build autonomously; stepwise aims to keep you in the
+loop and the bookkeeping honest.
+
+| Project | Overlap | Difference from stepwise |
+| --- | --- | --- |
+| [GitHub Spec Kit](https://github.github.com/spec-kit/) | Spec → plan → tasks in Markdown | Feature-scoped and agent-implemented; no isolated reviewer or confirmation gate on status |
+| [claude-code-spec-workflow](https://github.com/Pimzino/claude-code-spec-workflow) | Requirements → design → tasks → implementation | Per-feature documents; no project-wide architecture or conventions held across tasks |
+| [Superpowers](https://github.com/obra/superpowers) | Brainstorm → plan → implement with review | Subagents implement the plan; stepwise briefs you and leaves building to you or a pair session |
+| [hyperpowers](https://www.claudepluginhub.com/plugins/withzombies-hyperpowers) | Approved specs and task directories, stepwise implementation | Closest in spirit; no stable-id plan revision or clean-context reviewer |
+| [Smart Ralph](https://github.com/tzachbon/smart-ralph) | Spec, then one task at a time | Executes tasks autonomously in a loop |
+| [Taskmaster](https://github.com/eyaltoledano/claude-task-master) | Task breakdown with status and dependencies | Task management only; no governing documents or review against them |
+
+What stepwise combines that the others don't:
+
+- **Five governing documents** every task is checked against, before and after.
+- **A read-only reviewer in a clean context**, so it judges the code and diff,
+  not the story told while building it.
+- **No status change without your yes.**
+- **Stable task ids** — revisions append, drop or split, never renumber.
+- **Stack primers** for learning a new stack while you build.
+- **Adoption on existing projects** and a checked-in eval suite.
+
+Pick Spec Kit or Superpowers if you want the agent to do the implementing;
+pick stepwise if you want to build, or pair, one verified step at a time.
+
 ## How it works
 
 ### The documents
