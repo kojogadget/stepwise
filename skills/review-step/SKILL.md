@@ -5,7 +5,7 @@ disable-model-invocation: true
 argument-hint: "[step-id | iteration-number | topic] [-- manual evidence]"
 effort: high
 context: fork
-agent: step-reviewer
+agent: stepwise:step-reviewer
 background: false
 ---
 
